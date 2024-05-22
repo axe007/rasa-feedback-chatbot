@@ -1,0 +1,643 @@
+version: '3.1'  # Define the Rasa version used
+
+intents:  # Define the intents recognized by the bot
+- affirm
+- bot_challenge
+- deny
+- explain_feature:
+    use_entities:
+    - feature_to_explain
+- find_page:
+    use_entities:
+    - page
+- goodbye
+- greet
+- mongolian_greeting
+- non_english
+- help
+- thankyou
+- provide_feature_request
+- provide_bug_report
+- provide_generic_comment
+- out_of_scope
+- nlu_fallback
+
+entities:  # Define the entities recognized by the bot
+- page
+- feature_to_explain
+- bb_request_description
+- feature_challenges
+- feature_use_case
+- feature_target_area
+- feature_goal
+- feature_criteria
+- feature_priority
+- feature_description
+- bug_description
+- comment_description
+
+slots:  # Define the slots used in the conversation
+  mongolian_greeting_used:  # Slot to track if Mongolian greeting was used
+    type: bool
+    influence_conversation: false
+    mappings:
+    - type: custom
+  page:  # Slot to capture the page entity
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: page
+  feature_to_explain:  # Slot to capture the feature_to_explain entity
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: feature_to_explain
+  AA_CONTINUE_FORM:  # Slot to manage activation and continuation of forms
+    type: any
+    influence_conversation: false
+    mappings:
+      - intent: affirm
+        type: from_intent
+        value: yes
+        conditions:
+          - active_loop: feature_request_form
+            requested_slot: AA_CONTINUE_FORM
+          - active_loop: bug_report_form
+            requested_slot: AA_CONTINUE_FORM
+          - active_loop: generic_comment_form
+            requested_slot: AA_CONTINUE_FORM
+      - intent: deny
+        type: from_intent
+        value: no
+        conditions:
+          - active_loop: feature_request_form
+            requested_slot: AA_CONTINUE_FORM
+          - active_loop: bug_report_form
+            requested_slot: AA_CONTINUE_FORM
+          - active_loop: generic_comment_form
+            requested_slot: AA_CONTINUE_FORM
+      - intent:
+          - inform
+          - feature_request_form
+        type: from_text
+        conditions:
+          - active_loop: feature_request_form
+            requested_slot: AA_CONTINUE_FORM
+      - intent:
+          - inform
+          - bug_report_form
+        type: from_text
+        conditions:
+          - active_loop: bug_report_form
+            requested_slot: AA_CONTINUE_FORM
+      - intent:
+          - inform
+          - generic_comment_form
+        type: from_text
+        conditions:
+          - active_loop: generic_comment_form
+            requested_slot: AA_CONTINUE_FORM
+  previous_form_name:  # Slot to capture the name of the previous form
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: custom
+  next_form_name:  # Slot to capture the name of the next form
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: custom
+  requested_slot:  # Slot to manage requested slots in forms
+    type: any
+    influence_conversation: false
+    mappings:
+      - type: custom
+  bb_request_description:  # Slot to capture the description of the initial user request
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: feature_request_form
+            requested_slot: bb_request_description
+  request_subject:  # Slot to capture the subject of the bug report or generic comment, not used in feature request
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: bug_report_form
+            requested_slot: request_subject
+          - active_loop: generic_comment_form
+            requested_slot: request_subject
+  feature_challenges:  # Slot to capture the challenges related to the feature request
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: feature_request_form
+            requested_slot: feature_challenges
+  feature_use_case:  # Slot to capture the use case for the feature request
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: feature_request_form
+            requested_slot: feature_use_case
+  feature_goal:  # Slot to capture the goal of the feature request
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: feature_request_form
+            requested_slot: feature_goal
+  feature_target_area:  # Slot to capture the target area of the feature request
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: feature_request_form
+            requested_slot: feature_target_area
+  feature_criteria:  # Slot to capture the criteria for the feature request
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: feature_request_form
+            requested_slot: feature_criteria
+  feature_priority:  # Slot to capture the priority of the feature request
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: feature_request_form
+            requested_slot: feature_priority
+  feature_description:  # Slot to capture the description of the feature request
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: feature_request_form
+            requested_slot: feature_description
+  bug_description:  # Slot to capture the description of the bug report
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: bug_report_form
+            requested_slot: bug_description
+  comment_description:  # Slot to capture the description of the generic comment
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: generic_comment_form
+            requested_slot: comment_description
+  user_story:  # Slot to capture the user story related to the feature request
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: custom
+        conditions:
+          - active_loop: feature_request_form
+            requested_slot: feature_description
+          - active_loop: feature_request_form
+            requested_slot: user_story
+  feature_form_temp_goal:  # Temporary slot to store generated the goal of the feature request
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: custom
+  feature_form_temp_goal_ident:  # Temporary boolean slot to identify whether above slot is filled
+    type: bool
+    influence_conversation: false
+    initial_value: false
+    mappings:
+      - type: custom
+  feature_form_temp_challenges:  # Temporary slot to store generated challenges related to the feature request
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: custom
+  feature_form_temp_challenges_ident:  # Temporary boolean slot to identify whether above slot is filled
+    type: bool
+    influence_conversation: false
+    initial_value: false
+    mappings:
+      - type: custom
+  feature_form_temp_use_case:  # Temporary slot to store generated use case for the feature request
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: custom
+  feature_form_temp_use_case_ident:  # Temporary boolean slot to identify whether above slot is filled
+    type: bool
+    influence_conversation: false
+    initial_value: false
+    mappings:
+      - type: custom
+  feature_form_temp_area:  # Temporary slot to store generated target area of the feature request
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: custom
+  feature_form_temp_area_ident:  # Temporary boolean slot to identify whether above slot is filled
+    type: bool
+    influence_conversation: false
+    initial_value: false
+    mappings:
+      - type: custom
+  feature_form_temp_criteria:  # Temporary slot to store generated criteria for the feature request
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: custom
+  feature_form_temp_criteria_ident:  # Temporary boolean slot to identify whether above slot is filled
+    type: bool
+    influence_conversation: false
+    initial_value: false
+    mappings:
+      - type: custom
+  feature_form_temp_priority:  # Temporary slot to store generated priority of the feature request
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: custom
+  feature_form_temp_priority_ident:  # Temporary boolean slot to identify whether above slot is filled
+    type: bool
+    influence_conversation: false
+    initial_value: false
+    mappings:
+      - type: custom
+  zz_confirm_form:  # Slot to manage confirmation of forms
+    type: any
+    influence_conversation: false
+    mappings:
+      - intent: affirm
+        type: from_intent
+        value: yes
+        conditions:
+          - active_loop: feature_request_form
+            requested_slot: zz_confirm_form
+          - active_loop: bug_report_form
+            requested_slot: zz_confirm_form
+          - active_loop: generic_comment_form
+            requested_slot: zz_confirm_form
+      - intent: deny
+        type: from_intent
+        value: no
+        conditions:
+          - active_loop: feature_request_form
+            requested_slot: zz_confirm_form
+          - active_loop: bug_report_form
+            requested_slot: zz_confirm_form
+          - active_loop: generic_comment_form
+            requested_slot: zz_confirm_form
+      - intent:
+          - inform
+          - feature_request_form
+        type: from_text
+        conditions:
+          - active_loop: feature_request_form
+            requested_slot: zz_confirm_form
+      - intent:
+          - inform
+          - bug_report_form
+        type: from_text
+        conditions:
+          - active_loop: bug_report_form
+            requested_slot: zz_confirm_form
+      - intent:
+          - inform
+          - generic_comment_form
+        type: from_text
+        conditions:
+          - active_loop: generic_comment_form
+            requested_slot: zz_confirm_form
+
+forms:  # Define the forms used in the conversation
+  feature_request_form:
+    ignored_intents: []
+    required_slots:
+      - AA_CONTINUE_FORM
+      - bb_request_description
+      - feature_challenges
+      - feature_use_case
+      - feature_target_area
+      - feature_goal
+      - feature_criteria
+      - feature_priority
+      - feature_description
+      - user_story
+      - zz_confirm_form
+  bug_report_form:
+    ignored_intents: []
+    required_slots:
+      - AA_CONTINUE_FORM
+      - request_subject
+      - bug_description
+      - zz_confirm_form
+  generic_comment_form:
+    ignored_intents: []
+    required_slots:
+      - AA_CONTINUE_FORM
+      - request_subject
+      - comment_description
+      - zz_confirm_form
+
+responses:  # Define the responses given by the bot, random response is returned if multiple options are defined here
+  utter_greet:
+    - text: Hello! It's great to see you. How can I assist you today?
+    - text: Hi there! I'm here to help. What's on your mind?
+    - text: Greetings! How can I help you today?
+    - text: Hey! AI powered up and ready to assist. What do you need help with?
+    - text: Welcome to BECS Chat! What can I do for you today?
+    - text: How do you do? How can I be of service?
+    - text: Hi! I hope you're having a wonderful day. How can I assist?
+    - text: Hi! I'm your virtual assistant. How can I make your experience better?
+    - text: Greetings! I'm here and ready to help. Any questions?
+    - text: Welcome! I'm eager to assist. What's your question?
+    - text: Hi! How can I help you today? Feel free to ask me anything.
+  utter_greet_mongolian:
+  - text: Сайн байна уу! Танд хэрхэн туслах вэ? Та асуултаа зөвхөн Англи хэл дээр бичнэ үү.
+  - text: Сайн уу! Би туслахад бэлэн байна. Та асуултаа зөвхөн Англи хэл дээр бичнэ үү.
+  - text: Тавтай морилно уу! Өнөөдөр би танд хэрхэн туслах вэ? Та асуултаа зөвхөн Англи хэл дээр бичнэ үү.
+  - text: Сайн уу. Зочилсонд таатай байна! Танд яаж туслах вэ? Та асуултаа зөвхөн Англи хэл дээр бичнэ үү.
+  - text: Сайн уу! Та өдрийг сайхан өнгөрүүлж байна уу? Хэрэв асуух зүйл байвал надад хэлнэ үү. Та асуултаа зөвхөн Англи хэл дээр бичнэ үү.
+  - text: Сайн уу! Та энэ удаа юуны тулд бидэн рүү хандсан бэ? Та асуултаа зөвхөн Англи хэл дээр бичнэ үү.
+  - text: Сайн уу! Би таны цахим туслах байна. Би яаж туслах вэ? Та асуултаа зөвхөн Англи хэл дээр бичнэ үү.
+  - text: Сайн байна уу! Хамтдаа таны асуудлыг шийдвэрлэцгээе. Танд ямар тусламж хэрэгтэй вэ? Та асуултаа зөвхөн Англи хэл дээр бичнэ үү.
+  - text: Сайн байна уу! Би таны асуултад хариулахад бэлэн байна. Та асуултаа зөвхөн Англи хэл дээр бичнэ үү.
+  - text: Тавтай морил! Би таны асуултанд хариу өгөхөд бэлэн байна. Таны асуулт юу вэ? Та асуултаа зөвхөн Англи хэл дээр бичнэ үү.
+  - text: Сайн уу! Өнөөдөр би танд хэрхэн туслах вэ? Та сонирхсон зүйлсээ асуугаарай. Та асуултаа зөвхөн Англи хэл дээр бичнэ үү.
+  utter_ask_continue:
+  - text: Do you want to continue?
+  - text: Would you like to continue?
+  utter_goodbye:
+  - text: Bye
+  utter_ok:
+      - text: 👍
+  utter_iamabot:
+  - text: I am a chatbot, powered by Conversational AI platform.
+  utter_non_english:
+    - text: I am sorry, please use English so I can assist you better. Та асуултаа Англи хэл дээр бичнэ үү.
+  utter_help:
+    - text: |-
+        I am here to help you to:<br>
+        <ul>
+          <li>request for a new feature</li>
+          <li>find some pages</li>
+          <li>explain certain features</li>
+          <li>submit a bug report</li>
+          <li>send comments and feedbacks.</li>
+        </ul>
+  utter_noworries:
+    - text: "You're welcome :)"
+    - text: "No problem at all!"
+    - text: "Glad to help!"
+    - text: "Anytime!"
+    - text: "My pleasure!"
+    - text: "Happy to assist!"
+    - text: "Of course!"
+    - text: "Sure thing!"
+    - text: "Don't mention it!"
+    - text: "Always here to help!"
+    - text: "It's nothing!"
+    - text: "You got it!"
+    - text: "That's what I'm here for!"
+    - text: "No worries at all!"
+    - text: "I'm glad I could help."
+    - text: "Absolutely, you're welcome!"
+    - text: "It was my pleasure assisting you."
+    - text: "Glad I could be of service!"
+    - text: "Happy to be of help!"
+    - text: "Feel free to ask anytime!"
+  utter_ask_whatelse:
+    - text: "What else can I help you with?"
+  utter_ask_bug_report_form_bug_description:
+    - text: "Please describe the bug or error you are encountering."
+  utter_ask_generic_comment_form_comment_description:
+    - text: "Please provide your comment or feedback now."
+  utter_ask_feature_request_form_bb_request_description:
+    - text: "Could you please provide a detailed description of your needs or the task you are trying to accomplish 
+            with the new feature? The more specific you can be, the better we can assist you. It would be great if you
+             could mention the following information:<br /><br />
+              <ul>
+                      <li>Challenges or problem are you facing</li>
+                      <li>Actions or capabilities you need</li>
+                      <li>Your needs and objectives</li>
+                      <li>Which section of the software you need it</li>
+                      <li>What makes it complete and successful</li>
+                      <li>And how urgent do you need this new functionality</li>
+                      <li>Any other details you want</li>
+                    </ul>
+            "
+  utter_ask_feature_request_form_feature_challenges:
+    - condition:
+        - type: slot
+          name: feature_form_temp_challenges_ident
+          value: true
+      text: "You've mentioned \"<b>{feature_form_temp_challenges}</b>\" as challenge in your description. Please expand to 
+            further explain your challenges."
+    - condition:
+        - type: slot
+          name: feature_form_temp_challenges_ident
+          value: false
+      text: "What specific challenge or problem are you facing?"
+  utter_ask_feature_request_form_feature_use_case:
+    - condition:
+        - type: slot
+          name: feature_form_temp_use_case_ident
+          value: true
+      text: "You've said \"<b>{feature_form_temp_use_case}</b>\" as possible use case. 
+            How do you envision using this new feature? Please describe any 
+            specific actions or capabilities you need."
+    - condition:
+        - type: slot
+          name: feature_form_temp_use_case_ident
+          value: false
+      text: "How do you envision using this new feature? Please describe any specific actions or capabilities you need."
+  utter_ask_feature_request_form_feature_goal:
+    - condition:
+        - type: slot
+          name: feature_form_temp_goal_ident
+          value: true
+      text: "We've identified \"<b>{feature_form_temp_goal}</b>\" as your goal. Please provide a detailed description of 
+              your needs and what are you trying to get done?"
+    - condition:
+        - type: slot
+          name: feature_form_temp_goal_ident
+          value: false
+      text: "Please provide a detailed description of your needs and what are you trying to get done?"
+  utter_ask_feature_request_form_feature_target_area:
+    - condition:
+        - type: slot
+          name: feature_form_temp_area_ident
+          value: true
+      text: "I think \"<b>{feature_form_temp_area}</b>\" is your desired target area. Please describe area, section or which part
+            of the software you would like to see your new feature."
+    - condition:
+        - type: slot
+          name: feature_form_temp_area_ident
+          value: false
+      text: "Which part or section of the system needs this new feature? Please specify the section. (<small>For example: 
+              \"Calculator - Block measurements tab\", \"Walls - Material selection dropdown\", etc.</small>)"
+  utter_ask_feature_request_form_feature_criteria:
+    - condition:
+        - type: slot
+          name: feature_form_temp_criteria_ident
+          value: true
+      text: "You've mentioned \"<b>{feature_form_temp_criteria}</b>\" as criteria for acceptance. What conditions need to be met for this 
+              feature to be considered complete and successful? How will it be tested and validated??"
+    - condition:
+        - type: slot
+          name: feature_form_temp_criteria_ident
+          value: false
+      text: "What results or conditions need to be met for this feature to be considered complete and successful?"
+  utter_ask_feature_request_form_feature_priority:
+    - condition:
+        - type: slot
+          name: feature_form_temp_priority_ident
+          value: true
+      text: "You mentioned that \"<b>{feature_form_temp_priority}</b>\" as priority. How important and urgent is this feature 
+              compared to other tasks? Do you have a specific timeline or deadline for its implementation?"
+      buttons:
+        - title: "Very urgent"
+          payload: /very_urgent
+        - title: "Urgent"
+          payload: /urgent
+        - title: "Moderate"
+          payload: /moderate
+        - title: "Not urgent"
+          payload: /not_urgent
+        - title: "Very low"
+          payload: /very_low
+    - condition:
+        - type: slot
+          name: feature_form_temp_priority_ident
+          value: false
+      text: "How important and urgent is this feature compared to other tasks? Do you have a 
+              specific timeline or deadline for its implementation?"
+      buttons:
+        - title: "Very urgent"
+          payload: /very_urgent
+        - title: "Urgent"
+          payload: /urgent
+        - title: "Moderate"
+          payload: /moderate
+        - title: "Not urgent"
+          payload: /not_urgent
+        - title: "Very low"
+          payload: /very_low
+  utter_ask_feature_request_form_feature_description:
+    - text: "Any other details of the feature you are requesting? The more details you provide, the better we can 
+            understand your needs. Try to describe it step by step or by example."
+  utter_ask_bug_report_form_request_subject:
+    - text: "Please enter your bug report title"
+  utter_ask_generic_comment_form_request_subject:
+    - text: "Please enter your comment title"
+  utter_out_of_scope:
+    - text: "Sorry, I'm not sure how to respond to that. However, I can help you with building energy calculator or 
+            relay your feedback to the project team."
+  utter_feedback_received:
+    - text: "Thank you for your feedback. It is sent to the project team."
+    - text: "Your feedback is truly appreciated. It is sent to the project team."
+  utter_feedback_cancelled:
+    - text: "Feedback is cancelled. Feel free to come back and try again. Thank you."
+  utter_ask_feature_request_form_AA_CONTINUE_FORM:
+    - buttons:
+        - payload: /affirm
+          title: Yes
+        - payload: /deny
+          title: No, cancel the feedback
+      text: Would you like to provide a new feature (function, actions or more options etc.) request?
+  utter_ask_bug_report_form_AA_CONTINUE_FORM:
+    - buttons:
+        - payload: /affirm
+          title: Yes
+        - payload: /deny
+          title: No, cancel the bug report
+      text: Would you like to write a bug report (errors, wrong results or mistakes etc.)?
+  utter_ask_generic_comment_form_AA_CONTINUE_FORM:
+    - buttons:
+        - payload: /affirm
+          title: Yes
+        - payload: /deny
+          title: No, cancel the comment
+      text: Would you like to provide a generic comment or feedback (positive or negative reviews etc.)?
+  utter_ask_feature_request_form_zz_confirm_form:
+    - buttons:
+        - payload: /affirm
+          title: Yes
+        - payload: /deny
+          title: No, cancel the feedback
+      text: |- 
+        Would you like to send your new feature request as follows?<br />
+        <b>Challenges:</b> {feature_challenges}<br /><br />
+        <b>Use case:</b> {feature_use_case}<br /><br />
+        <b>Area:</b> {feature_target_area}<br /><br />
+        <b>Goal:</b> {feature_goal}<br /><br />
+        <b>Criteria:</b> {feature_criteria}<br /><br />
+        <b>Priority:</b> {feature_priority}<br /><br />
+        <b>Initial description:</b> {bb_request_description}<br /><br />
+        <b>Other details:</b> {feature_description}<br /><br />
+        <b>Suggested user story:</b> {user_story}<br /><br />
+  utter_ask_bug_report_form_zz_confirm_form:
+    - buttons:
+        - payload: /affirm
+          title: Yes
+        - payload: /deny
+          title: No, cancel the bug report
+      text: Would you like to to send your bug report?
+  utter_ask_generic_comment_form_zz_confirm_form:
+    - buttons:
+        - payload: /affirm
+          title: Yes
+        - payload: /deny
+          title: No, cancel the comment
+      text: Would you like to to send your comment?
+  utter_default:
+    - text: "Sorry, I didn't catch that. Could you say it differently?"
+    - text: "I'm not sure I understood. Can you say that another way?"
+    - text: "Hmm, I'm having a bit of trouble understanding. Could you explain again?"
+    - text: "I'm not quite sure what you mean. Could you clarify?"
+    - text: "Could you help me understand that better? I didn't get it the first time."
+    - text: "Oops, that went over my head. Could you phrase that another way?"
+    - text: "It seems I didn't quite get that. Can you rephrase your statement?"
+    - text: "I'm having difficulty understanding you. Could you restate that?"
+    - text: "That's a bit unclear to me. Could you simplify your statement?"
+    - text: "Apologies, I didn't understand. Could you rephrase that for me?"
+
+actions:  # Define the actions used in the conversation
+- utter_default
+- action_session_start
+- action_restart
+- action_explain_feature
+- action_check_mongolian_greeting
+- action_find_page
+- action_request_feature
+- action_bug_report
+- action_generic_comment
+- action_switch_forms_ask
+- action_switch_forms_deny
+- action_switch_forms_affirm
+- action_switch_back_ask
+- validate_feature_request_form
+- validate_bug_report_form
+- validate_generic_comment_form
+- action_fallback_to_llm
+
+session_config:  # Define the session configuration
+  session_expiration_time: 60 # minutes
+  carry_over_slots_to_new_session: false

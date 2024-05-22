@@ -1,0 +1,46 @@
+version: "3.1"
+
+# Rasa assistant configuration file
+
+recipe: default.v1
+
+assistant_id: 20240517-222845-great-upload
+
+language: en
+
+# NLU pipeline configuration
+pipeline:
+  - name: WhitespaceTokenizer  # Tokenizes text based on whitespace
+  - name: RegexFeaturizer  # Extracts features using regular expressions
+  - name: LexicalSyntacticFeaturizer  # Extracts lexical and syntactic features
+  - name: CountVectorsFeaturizer  # Converts text to count vectors
+  - name: CountVectorsFeaturizer  # Converts text to character-based count vectors
+    analyzer: "char_wb"
+    min_ngram: 1
+    max_ngram: 4
+  - name: DIETClassifier  # Dual Intent Entity Transformer for intent classification and entity recognition
+    epochs: 150
+  - name: FallbackClassifier  # Classifier to handle fallback when confidence is low
+    threshold: 0.7
+  - name: EntitySynonymMapper  # Maps synonyms to the same entity
+  - name: SpacyNLP  # SpaCy model for NLP processing
+    model: "en_core_web_md"
+    case_sensitive: false
+  - name: "SpacyEntityExtractor"  # Extracts entities using SpaCy model
+    # Note: It is not possible to use the SpacyTokenizer + SpacyFeaturizer in
+    #       combination with the WhitespaceTokenizer, and as a result the
+    #       PERSON extraction by Spacy is not very robust.
+    #       Because of this, the nlu training data is annotated as well, and the
+    #       DIETClassifier will also extract PERSON entities .
+    dimensions: [ "feedback_type" ]
+
+# Policies for core model configuration
+policies:
+  - name: AugmentedMemoizationPolicy  # Remembers the previous conversations
+    max_history: 4
+  - name: TEDPolicy  # Transformer Embedding Dialogue policy
+    epochs: 100
+  - name: RulePolicy  # Rule-based policy for handling specific scenarios
+    core_fallback_threshold: 0.4
+    core_fallback_action_name: "action_fallback_to_llm"
+    enable_fallback_prediction: True

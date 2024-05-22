@@ -1,0 +1,70 @@
+[
+    {
+        "keyword": "about",
+        "url": "https://becs.e-nomads.com/about"
+    },
+    {
+        "keyword": "applications",
+        "url": "https://becs.e-nomads.com/profile/applications"
+    },
+    {
+        "keyword": "calculator",
+        "url": "https://becs.e-nomads.com/calculator"
+    },
+    {
+        "keyword": "certificates",
+        "url": "https://becs.e-nomads.com/profile/certificates"
+    },
+    {
+        "keyword": "dashboard",
+        "url": "https://becs.e-nomads.com/dashboard"
+    },
+    {
+        "keyword": "error",
+        "url": "https://becs.e-nomads.com/error"
+    },
+    {
+        "keyword": "files",
+        "url": "https://becs.e-nomads.com/profile/files"
+    },
+    {
+        "keyword": "forgot",
+        "url": "https://becs.e-nomads.com/forgot-password"
+    },
+    {
+        "keyword": "help",
+        "url": "https://becs.e-nomads.com/help"
+    },
+    {
+        "keyword": "home",
+        "url": "https://becs.e-nomads.com/"
+    },
+    {
+        "keyword": "login",
+        "url": "https://becs.e-nomads.com/login"
+    },
+    {
+        "keyword": "overview",
+        "url": "https://becs.e-nomads.com/profile/overview"
+    },
+    {
+        "keyword": "password",
+        "url": "https://becs.e-nomads.com/forgot-password"
+    },
+    {
+        "keyword": "profile",
+        "url": "https://becs.e-nomads.com/profile"
+    },
+    {
+        "keyword": "projects",
+        "url": "https://becs.e-nomads.com/profile/projects"
+    },
+    {
+        "keyword": "registration",
+        "url": "https://becs.e-nomads.com/registration"
+    },
+    {
+        "keyword": "reset",
+        "url": "https://becs.e-nomads.com/request-reset"
+    }
+]

@@ -1,0 +1,25 @@
+version: "3.1"
+
+stories:
+# Story to find a specific page
+- story: find page path
+  steps:
+  - intent: find_page
+    entities:
+    - page: "calculator"
+  - action: action_find_page
+
+# Story to explain a specific feature
+- story: explain feature path
+  steps:
+  - intent: explain_feature
+    entities:
+    - feature_to_explain: "dashboard"
+  - action: action_explain_feature
+
+# Story to say "ok" when the user affirms after getting help
+- story: say ok when user affirms after utter_help
+  steps:
+  - action: utter_help
+  - intent: affirm
+  - action: utter_ok

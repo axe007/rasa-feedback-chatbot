@@ -1,0 +1,892 @@
+version: "3.1"
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - morning
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+    - greetings
+    - howdy
+    - what's up
+    - hiya
+    - how's it going
+    - what's happening
+    - hello hi
+    - hi there
+    - hey hi
+    - evening
+    - hi everyone
+    - hey everybody
+    - yo
+    - sup
+    - heya
+    - how are you
+    - how's everything
+    - how's your day
+    - how have you been
+    - how's life
+    - how do you do
+    - pleased to meet you
+    - nice to meet you
+    - good to see you
+    - great to see you
+    - glad to see you
+    - it's a pleasure to meet you
+    - it's nice to meet you
+    - it's good to meet you
+    - it's great to meet you
+    - it's wonderful to meet you
+    - salutations
+    - greetings and salutations
+    - hello my friend
+    - hi friend
+    - hello buddy
+    - good day
+    - top of the morning
+    - good day to you
+    - how's the day
+    - how's the morning
+    - how's the evening
+    - good to have you here
+    - welcome
+    - welcome here
+    - how's everything going
+    - how are things
+    - how's life treating you
+    - how's your morning
+    - how's your evening
+    - Hi
+- intent: goodbye
+  examples: |
+    - good bye
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+    - farewell
+    - catch you later
+    - until next time
+    - talk to you later
+    - I'm off
+    - gotta go
+    - have to go
+    - time to go
+    - must be going
+    - take care
+    - all the best
+    - have a good one
+    - so long
+    - I must go
+    - see you soon
+    - I'll be going now
+    - it was nice talking to you
+    - have a great day
+    - I'll see you around
+    - until we meet again
+    - I've got to run
+    - take it easy
+    - peace out
+    - I'm out
+    - see ya
+    - later
+    - goodbye for now
+    - catch you next time
+    - see you next time
+    - it's been real
+    - I've got to get going
+    - signing off
+    - time for me to head out
+    - I've got to head off
+    - take good care
+    - be seeing you
+    - hasta la vista
+    - auf Wiedersehen
+    - till later
+    - have a good day
+    - have a good night
+    - see you tomorrow
+    - I'll catch up with you later
+    - time to say goodbye
+    - I'll say goodbye for now
+    - it's time for me to go
+    - I need to get going
+    - I should be going
+    - it's been nice
+    - it was great chatting
+    - let's talk again soon
+    - take care of yourself
+    - That's all. Goodbye.
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+    - absolutely
+    - certainly
+    - definitely
+    - sure
+    - sure thing
+    - right
+    - that's right
+    - yes please
+    - yup
+    - yeah
+    - affirmative
+    - for sure
+    - that's correct
+    - you bet
+    - indeed I do
+    - that's true
+    - I agree
+    - I think so
+    - sounds good
+    - I'd love to
+    - I believe so
+    - exactly
+    - that's it
+    - you're right
+    - that's what I think
+    - I feel the same way
+    - I concur
+    - you got it
+    - I'm in
+    - I'm sure
+    - I do
+    - I would
+    - sounds like a plan
+    - count me in
+    - I'm positive
+    - that's the one
+    - I'm for it
+    - Ok
+    - sweet
+    - cool
+    - yes...
+    - ok
+    - okay
+    - That would be great
+    - YES
+    - YUP
+    - Yea
+    - Yeah sure
+    - Yep
+    - Yep that's fine
+    - Yes I do
+    - Yes please!
+    - Yes, I accept
+- intent: deny
+  examples: |
+    - no
+    - never
+    - no way
+    - not really
+    - not at all
+    - certainly not
+    - absolutely not
+    - nope
+    - nah
+    - not true
+    - that's not right
+    - incorrect
+    - not the case
+    - not so
+    - that's wrong
+    - no thanks
+    - not a chance
+    - no sir
+    - not for me
+    - not in a million years
+    - not likely
+    - not possible
+    - I'm not sure
+    - I'm afraid not
+    - that isn't right
+    - I'm not interested
+    - not feeling it
+    - not my thing
+    - not exactly
+    - not quite
+    - not keen on that
+    - not my cup of tea
+    - no thank you
+    - not this time
+    - that doesn't work for me
+    - Nothing!
+    - nevermind
+    - never mind
+    - i decline
+    - i guess it means no
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+    - is this a robot?
+    - is this a real person?
+    - are you real?
+    - are you a person?
+    - are you a robot or a human?
+    - are you a computer program?
+    - are you an AI?
+    - are you automated?
+    - is this an automated response?
+    - are you sentient?
+    - are you a machine?
+    - are you artificial intelligence?
+    - are you a real human being?
+    - is a human chatting with me?
+    - are you a virtual assistant?
+    - is this a human or a computer?
+    - are you a real person or a bot?
+    - are you a chatbot?
+    - is this a bot I'm talking to?
+    - are you a live person?
+    - do I chat with a human or a bot?
+    - is a robot answering me?
+    - are you a programmed bot?
+    - are you a real live human?
+    - are you just a program?
+    - are you an automated bot?
+    - are you a computer or a person?
+    - are you human or just a machine?
+    - do you have consciousness?
+    - are you a digital assistant?
+    - am I interacting with an AI?
+    - are you a software?
+    - are you a person or a program?
+    - are you operated by a human?
+    - is there a human behind this?
+    - are you an intelligent bot?
+    - are you just AI?
+    - are you a physical person?
+    - are you a human being or a robot?
+    - do you have a human operator?
+    - are you a human or a computer?
+    - is a person typing this?
+    - are you a human operator?
+    - are you a computerized assistant?
+    - are you an algorithm?
+    - are you a cyborg?
+    - are you a real person talking?
+    - are you an electronic brain?
+    - are you a living person?
+    - are you an entity?
+    - are you a humanoid?
+    - are you a virtual entity?
+    - are you a digital entity?
+    - are you a person typing?
+    - are you a bot or a human?
+    - are you an android?
+    - are you a computer-generated entity?
+    - are you an automated system?
+    - am I conversing with a machine?
+    - are you a man-made entity?
+    - are you a virtual being?
+    - is a computer talking to me?
+    - what are you?
+    - what r u?
+    - what is your name?
+    - r u a bot?
+    - r u a human?
+    - r u real?
+    - r u a real person?
+    - am I talking to a bot or what?
+    - u a bot?
+    - u a human?
+    - is this chat with a bot?
+    - u real or just a machine?
+    - r u an AI?
+    - r u a robot?
+    - u an automated system?
+    - r u just programmed to talk?
+    - r u operated by someone?
+    - r u a computer program?
+    - this a human or a bot?
+    - u a virtual assistant?
+    - u a chatbot?
+    - r u a computer?
+    - u a machine?
+    - r u automated or what?
+    - is this a real person I'm talking to?
+    - u a real human or not?
+    - r u a real person chatting?
+    - u a living person?
+    - r u just AI or something more?
+    - u an android or a human?
+    - is this AI or a real person?
+- intent: mongolian_greeting
+  examples: |
+    - sain uu?
+    - sain baina uu?
+    - yu baina?
+    - ta sain baina uu
+    - sainuu
+    - сайн уу
+    - сайн байна уу
+    - юу байна
+    - та сайнуу
+    - сайнуу
+    - sin uu
+    - sian uu?
+    - sain un?
+    - sain bna uu?
+    - yuu bna?
+    - tasain baina uu
+    - sainu
+    - саин уу
+    - саин байна уу
+    - юу байна уу
+    - та саин байна уу
+    - саинуу
+    - ssain uu
+    - saain uu
+    - siin uu
+    - sain bb uu?
+    - saiin uu
+    - сан уу
+    - син байна уу
+    - ю байна
+    - та синуу
+    - синуу
+    - sain buu?
+    - sain ban uu?
+    - yu ban?
+    - ta sian baina uu
+    - sianuu
+    - amar baina uu?
+    - amar sain uu?
+    - amar uu?
+    - сайн амар уу?
+    - амар сайн уу?
+    - амар уу?
+    - баяртай
+    - баяртай уу?
+    - mend uu?
+    - мэнд уу?
+    - тавтай морилно уу?
+    - tavtai morilno uu?
+    - mendee uu?
+    - мэндээ уу?
+    - mend sain uu?
+    - мэнд сайн уу?
+    - sain mend uu?
+    - сайн мэнд уу?
+    - mendee sain uu?
+    - мэндээ сайн уу?
+    - saihan uu?
+    - сайхан уу?
+    - сайхан хаваржиж байна уу
+    - сайхан зусч байна уу
+    - сайхан намаржиж байна уу
+    - сайхан өвөлжиж байна уу
+    - saikhan khavarjij baina uu
+    - saikhan zusch baina uu
+    - saikhan namarjij baina uu
+    - saikhan ovoljij baina uu
+    - tavtai sain uu
+    - тавтай сайн уу
+    - ажил тавлаг уу
+    - ajil tavlag uu
+    - Sain uu
+- intent: out_of_scope
+  examples: |
+    - what is the square root of 5
+    - I want to know the weather
+    - what is the meaning of life.
+    - Fridge Isn't Running
+    - my tv isn't working
+    - I want a pizza
+    - my washing machine isn't working
+    - what year is it
+    - order a pizza
+    - I want to order a pizza
+    - what is the weather today
+    - what is the weather
+    - what the weather today ?
+    - hows the weather
+    - tell me a joke
+    - Can I get a hamburger?
+    - Can YouTube talk?
+    - Can you call me back ?
+    - Can you give me your datacenter's password
+    - Can you give me your datacenter's password?
+    - Can you make sandwiches?
+    - Can you please send me an uber
+- intent: help
+  examples: |
+    - help
+    - what can you do?
+    - what can I ask you?
+    - what do you do?
+    - what can you help me with?
+    - help me
+    - help, what do you do
+    - can you help me
+    - What are the things that you can do?
+    - What else can you help me with?
+    - can you do anything else?
+    - can you help me?
+    - come back
+    - cool! can I do something else here?
+    - hello what can you do for me
+    - help
+    - help me
+    - help please
+    - help pls
+    - help?
+    - hep me
+    - please help
+    - pls help
+    - Can you help me get started?
+    - I need some assistance with the platform.
+    - Could you guide me through the initial setup?
+    - I'm new here, can you show me around?
+    - What should I do first on this platform?
+    - How can I get the most out of this tool?
+    - Can you explain the main features?
+    - I'm a bit lost, can you assist?
+    - What are the key things I should know?
+    - Help me understand the basics of your service.
+    - Where should I go for technical support?
+    - I need help with my first project setup.
+    - Can you guide me on how to use the main features?
+    - How do I navigate through the main sections?
+    - I need a quick overview of the platform.
+    - What are the first steps I should take here?
+    - Could you help me with account settings?
+    - I'm trying to understand how to configure the tool.
+    - Where can I find resources to help me get started?
+    - I'm having trouble understanding how to begin.
+- intent: thankyou
+  examples: |
+    - thank you
+    - okay thank you
+    - thank you bye
+    - um okay thank you good bye
+    - thank you
+    - and that's all thank you and goodbye
+    - okay thank you
+    - thanks
+    - thanks goodbye
+    - thank you and goodbye
+    - Thanks!
+    - Awesome, you are a good bot!
+    - great!
+    - I see, thanks
+    - Oh that's good!
+    - it's good :-)
+    - thanks
+    - good job bot
+    - great job, thanks!
+    - thanks for the help
+    - thanks!
+    - thank you
+    - thnks
+    - thx
+    - thanks for your information
+    - thanks a lot
+    - I appreciate it
+    - much appreciated
+    - I'm grateful
+    - thank you so much
+    - thank you very much
+    - thanks a million
+    - thank you for everything
+    - I really appreciate your help
+    - thank you for your assistance
+    - many thanks
+    - cheers
+    - bayarlalaa
+    - thanks a bunch
+    - thanks for your time
+    - thanks for your support
+    - I can't thank you enough
+    - you've been very helpful, thank you
+    - your support is appreciated
+    - that's very kind of you, thanks
+- intent: find_page
+  examples: |
+    - How can I view the [page]?
+    - I need to access the [page], how do I do that?
+    - Where [page] page?
+    - Where is [page]?
+    - Where is the [page]?
+    - Where’s the [page] on this site?
+    - Can't find the [page], need help
+    - Steps to navigate to the [page]
+    - I want to see the [page], where should I click?
+    - Direct me to the [page] please
+    - How do I find the [page] section?
+    - Looking for the [page], any ideas where it is?
+    - Show me how to reach the [page]
+    - Navigate to the [page]
+    - Path to the [page]
+    - Accessing the [page], how?
+    - Lead me to the [page]
+    - I’m trying to locate the [page]
+    - Trying to go to the [page]
+    - Find the [page] for me
+    - How to reach the [page]?
+    - I need the [page], where is it?
+    - Please help with finding the [page]
+    - Where is [home page]{"entity": "page", "value": "home"}
+    - Where is [index page]{"entity": "page", "value": "home"}
+    - Where is [main page]{"entity": "page", "value": "home"}
+    - Where is [homepage]{"entity": "page", "value": "home"}
+    - How to access [home](page)?
+    - How can I get back to the [home](page)?
+    - Where can I learn more [about](page) this site?
+    - I need assistance, where's the [help](page) page?
+    - [registration](page)
+    - What's the process for registering [registration](page)?
+    - I forgot my password, how can I [reset](page) it?
+    - Where is [about](page)
+    - Where is [help](page)
+    - Where is [login](page)
+    - Where is [forgot](page)
+    - Where do I go if I've forgotten my password [forgot](page)?
+    - Where is [password](page)
+    - Where do I go if I've forgotten my [password](page)?
+    - Where is [error](page)
+    - Encountered an [error](page), where to report?
+    - Where is [calculator](page)
+    - Where do I [calculate]{"entity": "page", "value": "calculator"} my building
+    - Where do I know [energy efficiency]{"entity": "page", "value": "calculator"}  of my house
+    - Where do I [calculate energy savings]{"entity": "page", "value": "calculator"}
+    - Where do I [calculate house]{"entity": "page", "value": "calculator"}
+    - Where do I [calculate a house]{"entity": "page", "value": "calculator"}
+    - Where do I [calculate]{"entity": "page", "value": "calculator"} apartment
+    - Where do I [calculate apartment]{"entity": "page", "value": "calculator"}
+    - Where do I [calculate an apartment]{"entity": "page", "value": "calculator"}
+    - Where do I [calculate]{"entity": "page", "value": "calculator"} building
+    - Where can I find the [calculator](page) tool?
+    - How do I view my [dashboard](page)?
+    - Where is [profile](page)
+    - Where can I edit my [profile](page)?
+    - Where is [overview](page)
+    - How to see my profile [overview](page)?
+    - How to see my [profile overview]{"entity": "page", "value": "overview"}?
+    - Where is my [profile overview]{"entity": "page", "value": "overview"}?
+    - Where is [projects](page)
+    - Where are my [projects](page) listed?
+    - Where is [applications](page)
+    - How to check my [applications](page)?
+    - How to check my [application]{"entity": "page", "value": "applications"}?
+    - How to check my [energy application]{"entity": "page", "value": "applications"}?
+    - Where is [certificates](page)
+    - Where is [certificate]{"entity": "page", "value": "certificates"}
+    - Where is [energy certificate]{"entity": "page", "value": "certificates"}
+    - Where can I find my [certificates](page)?
+    - Where is [files](page)
+    - I need to access my files, where are they?
+    - I need to access my [files](page), where are they?
+    - Where is [register]{"entity": "page", "value": "registration"}
+    - Where is the [register]{"entity": "page", "value": "registration"}
+    - How do I access [register]{"entity": "page", "value": "registration"}
+    - Where is [register user]{"entity": "page", "value": "registration"}
+    - Where is [new user]{"entity": "page", "value": "registration"}
+    - Where is [user registration]{"entity": "page", "value": "registration"}
+    - Where is [signup]{"entity": "page", "value": "registration"}
+    - Where is [new account]{"entity": "page", "value": "registration"}
+    - Where is [open account]{"entity": "page", "value": "registration"}
+    - Where is [register account]{"entity": "page", "value": "registration"}
+    - Where is [log in]{"entity": "page", "value": "login"}
+    - Where is [user signin]{"entity": "page", "value": "login"}
+    - Where is [sign-in]{"entity": "page", "value": "login"}
+    - Where is [sign in]{"entity": "page", "value": "login"}
+    - Where is [user login]{"entity": "page", "value": "login"}
+    - How do I access [calculator](page) page?
+    - How to [sign into]{"entity": "page", "value": "login"} my account?
+    - Guide me to the [login](page) area.
+    - I can't figure out where to [log in]{"entity": "page", "value": "login"}.
+    - Directions to account [sign-in]{"entity": "page", "value": "login"}.
+    - I want to update my [profile](page), where do I start?
+    - Need to check my [project]{"entity": "page", "value": "projects"} status, which page should I go to?
+    - Can’t see the [dashboard](page), what next?
+    - Failed to find the help section, can you guide me?
+    - [profile](page): Looking to edit my personal details.
+    - [profile](page): Need to review my recent activities.
+    - Where can I find the section for [login](page)?
+    - I’m looking for the area where [certificates]{"entity": "page", "value": "registration"} are shown.
+    - As an admin, how do I access user [registrations]{"entity": "page", "value": "registration"}?
+    - New here, how to find the [homepage]{"entity": "page", "value": "home"}?
+    - How to upload documents to my [files](page)?
+    - How to upload documents to my [file]{"entity": "page", "value": "files"}?
+    - How to upload [file]{"entity": "page", "value": "files"}?
+    - Want to change my [password](page), where’s that option?
+- intent: explain_feature
+  examples: |
+    - Can you explain how [feature_to_explain] works?
+    - Could you explain how [feature_to_explain] works?
+    - Could you please explain how [feature_to_explain] works?
+    - What's the purpose of [feature_to_explain]?
+    - What is the purpose of [feature_to_explain]?
+    - What's [feature_to_explain]?
+    - What is [feature_to_explain]?
+    - How do I use [feature_to_explain]?
+    - How to use [feature_to_explain]?
+    - Tell me more about [feature_to_explain]
+    - I need information on [feature_to_explain]
+    - Explain [feature_to_explain] feature.
+    - Please explain [feature_to_explain] feature
+    - Explain me [feature_to_explain]
+    - Teach me [feature_to_explain]
+    - Please explain [feature_to_explain]
+    - Please teach [feature_to_explain]
+    - Explain to me [feature_to_explain]
+    - Details on [feature_to_explain] please
+    - How does [feature_to_explain] function?
+    - Explain [dashboard](feature_to_explain) feature
+    - Explain me [dashboard](feature_to_explain)
+    - How do I use [dashboard](feature_to_explain)
+    - How do I use [registration](feature_to_explain)
+    - How to [register]{"entity": "feature_to_explain", "value": "registration"}?
+    - How do I [register]{"entity": "feature_to_explain", "value": "registration"}?
+    - How do I use [login](feature_to_explain)
+    - How do I use [settings](feature_to_explain)
+    - How do I use [calculator](feature_to_explain)
+    - Explain to me [dashboard](feature_to_explain)
+    - What is [settings](feature_to_explain)
+    - teach me [about](feature_to_explain)
+    - How does [about](feature_to_explain) function? # Added on 2024-03-31
+    - Can you explain the [applications](feature_to_explain) section?
+    - What's the purpose of [certificates](feature_to_explain)?
+    - How to use [error](feature_to_explain)?
+    - Tell me more about [files](feature_to_explain)
+    - I need information on [forgot](feature_to_explain)
+    - Please explain the [help](feature_to_explain) feature
+    - Details on [home](feature_to_explain) please
+    - Teach me how to navigate the [overview](feature_to_explain) section
+    - Explain the [password](feature_to_explain) recovery feature
+    - What is [profile](feature_to_explain)?
+    - How do I manage my [projects](feature_to_explain)?
+    - How do I [login](feature_to_explain) to my account?
+    - Can you explain the [registration](feature_to_explain) process?
+    - How to reset my password in the [reset](feature_to_explain) section?
+    - What settings can I adjust in the [settings](feature_to_explain) section?
+    - How to use [calculator](feature_to_explain) to assess energy performance?
+    - Explain to me how [dashboard](feature_to_explain) helps in project management
+    - Teach me how to use [applications](feature_to_explain) for project submissions
+    - Explain the purpose of [certificates](feature_to_explain) in project validation
+    - How do I navigate the [error](feature_to_explain) page effectively?
+    - I need details on accessing [files](feature_to_explain) for my project
+    - How to recover a forgotten password through the [forgot](feature_to_explain) process?
+    - How can [help](feature_to_explain) assist me in using the platform?
+    - Explain the main features available on the [home](feature_to_explain) page
+    - How to get an overview of my activities in the [overview](feature_to_explain) section?
+    - Describe the process for password management in the [password](feature_to_explain) section
+    - How can I edit my [profile](feature_to_explain)?
+    - Guide me through managing [projects](feature_to_explain) on the platform
+    - What is the process for [registration](feature_to_explain) on the site?
+    - How to perform a password [reset](feature_to_explain)?
+    - What are the [settings](feature_to_explain) I can configure?
+    - What are the purposes of using [feature_to_explain]? # Added on 2024-03-31
+    - Is there a tutorial for [feature_to_explain]?
+    - How do I activate [feature_to_explain]?
+    - Why would I use [feature_to_explain]?
+    - What are the limitations of [feature_to_explain]?
+    - Are there any shortcuts for using [feature_to_explain]?
+    - What's new in [feature_to_explain]?
+- intent: provide_feature_request
+  examples: |
+    - Can you add new function.
+    - I want new feature.
+    - How to ask for a new feature.
+    - I have suggestions for improvement.
+    - I would like to see new calculations in your software.
+    - I would like to see new building types in your software.
+    - It would be great if a feature was available.
+    - Can you implement some new shapes and building types?
+    - I wish you had more material choice.
+    - Requesting calculator feature.
+    - Please consider adding new shapes and building types.
+    - Please consider adding more building materials.
+    - How about introducing more calculator components?
+    - Can the software support multi-language interfaces?
+    - I'd love if there were customization options for user profiles.
+    - Could you add a dark mode feature?
+    - Please add a way to integrate with third-party APIs.
+    - It would help if you could include a real-time data analysis feature.
+    - I suggest adding a notification system for system updates.
+    - Can there be more templates for project reports?
+    - Please consider enabling a drag-and-drop interface.
+    - How about a feature to export data directly to spreadsheets?
+    - I need a more detailed user activity log feature.
+    - I think you should add a feature that allows for custom alerts.
+    - Would you consider adding scheduling capabilities to the app?
+    - A feature for easier file management would be beneficial.
+    - I would like a feature to automate reports.
+    - Any chance we could get more customization options for the interface?
+    - I suggest adding integration with more external services.
+    - It would be great if you could include collaborative tools.
+    - Can you add support for additional file types?
+    - Implementing more analytics tools would help a lot.
+    - Adding user roles and permissions would be very useful.
+    - Please add more filtering options in the search function.
+    - Could you include more interactive elements on the platform?
+    - A feature to allow for real-time collaboration would be excellent.
+    - Please consider adding a feature to track changes in documents.
+    - It would be helpful to add more detailed access logs.
+    - Can you enhance the dashboard with more widgets?
+    - A tool to customize notifications would make things easier.
+    - I would like to see improvements in data export features.
+    - More advanced project management tools would be appreciated.
+    - Would adding a chat function within teams be possible?
+    - I think the interface could be more user-friendly.
+- intent: provide_bug_report
+  examples: |
+    - I have a bug
+    - Encountering some errors.
+    - I have some errors
+    - I found a bug.
+    - There's a problem with calculator.
+    - [feature_to_explain] is not working as expected.
+    - I encountered an error.
+    - There seems to be an issue with
+    - App crashed.
+    - Window closes suddenly
+    - I'm experiencing issues with.
+    - [feature_to_explain] has a glitch.
+    - There's a problem with .
+    - Calculator is not working as expected.
+    - The login page freezes after entering credentials.
+    - There's a 404 error when trying to access the dashboard.
+    - User settings aren't saving; there seems to be a bug.
+    - My profile updates aren't reflecting; is this a glitch?
+    - The export function throws an error message every time.
+    - Graphs on the analytics page are not loading properly.
+    - Email notifications are being sent twice.
+    - There's a typo in the automated response system.
+    - The search feature yields no results even with valid queries.
+    - Uploading files larger than 5MB causes a server error.
+    - I keep getting Error 401 page
+    - I am encountering Error 404 page
+    - App crashing into error 500 page
+    - There's an issue with loading the main dashboard.
+    - I'm encountering errors when trying to update my profile.
+    - The latest update seems to have introduced a few bugs.
+    - I'm not able to log in with my credentials anymore.
+    - There's a persistent error on the settings page.
+    - I noticed a bug where I can't download reports.
+    - The application crashes when I try to upload files.
+    - The sync feature has been problematic lately.
+    - I've found a bug in how the search results are displayed.
+    - There seems to be a problem with how data is being saved.
+    - Email notification feature is not working properly.
+    - The calendar integration doesn't seem to function correctly.
+    - There's a glitch when I try to reset my password.
+    - The mobile app crashes every time I open it.
+    - There's a recurring error message when I access the help section.
+    - User avatars aren't loading on the forum.
+    - I keep getting logged out unexpectedly.
+    - The video call feature isn't working as intended.
+    - I'm facing issues with the multi-factor authentication setup.
+    - The page layout breaks when I switch languages.
+- intent: provide_generic_comment
+  examples: |
+    - I have some feedback
+    - Can I tell you about my experience?
+    - I want to provide some feedback.
+    - Here's what I think about your service.
+    - Feedback regarding your software.
+    - I would like to give some comments.
+    - Here is what I like and dislike.
+    - Your customer support was very helpful, thank you!
+    - I find the navigation a bit complicated.
+    - The recent update has made things more confusing.
+    - I appreciate the quick response times to queries.
+    - It would be nice if the tutorial sections were more detailed.
+    - The color scheme makes it hard to read text on the website.
+    - I enjoy the simplicity of your user dashboard.
+    - The setup process was straightforward and easy to follow.
+    - Overall, I'm satisfied with the functionality.
+    - Just wanted to say I love using your system!
+    - I think the layout could be more intuitive.
+    - Overall, I'm really happy with the changes you've made.
+    - I find the tool to be quite slow at times.
+    - The customer service here is always impressive.
+    - I feel like the interface could use more color.
+    - The new features have been really helpful, thanks!
+    - I wish there were more tutorials available.
+    - You guys have been doing a great job with support.
+    - I think there are too many steps in the current process.
+    - The updates have made the system much faster, great job!
+    - I'm not sure I understand how to use all the features.
+    - Your software makes my day-to-day tasks so much easier.
+    - I find the mobile version very convenient to use.
+    - The team has been very responsive to my questions.
+    - Could use some more detailed guides on the features.
+    - I've recommended your software to several colleagues.
+    - I'd like to see more options for personalizing my workspace.
+    - Your platform has transformed how we manage projects.
+    - I enjoy the simplicity and efficiency of your tool.
+- synonym: home
+  examples: |
+    - home page
+    - index page
+    - main page
+    - homepage
+- synonym: calculator
+  examples: |
+    - calculate
+    - energy efficiency
+    - calculate energy savings
+    - calculate house
+    - calculate a house
+    - calculate apartment
+    - calculate an apartment
+- synonym: overview
+  examples: |
+    - profile overview
+- synonym: applications
+  examples: |
+    - application
+    - energy application
+- synonym: certificates
+  examples: |
+    - certificate
+    - energy certificate
+- synonym: registration
+  examples: |
+    - register
+    - register user
+    - new user
+    - user registration
+    - signup
+    - new account
+    - open account
+    - register account
+    - certificates
+    - registrations
+- synonym: login
+  examples: |
+    - log in
+    - user signin
+    - sign-in
+    - sign in
+    - user login
+    - sign into
+- synonym: projects
+  examples: |
+    - project
+- synonym: files
+  examples: |
+    - file

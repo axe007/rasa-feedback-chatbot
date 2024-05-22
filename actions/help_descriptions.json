@@ -1,0 +1,74 @@
+[
+    {
+        "keyword": "about",
+        "explanation": "This section provides information about the website, its purpose, and the team behind it."
+    },
+    {
+        "keyword": "applications",
+        "explanation": "Here, users can manage their applications related to their projects, such as submissions for approvals or certifications."
+    },
+    {
+        "keyword": "calculator",
+        "explanation": "This section allows you to calculate the energy performance of your building."
+    },
+    {
+        "keyword": "certificates",
+        "explanation": "This area allows users to view and manage their certifications or awards related to their projects."
+    },
+    {
+        "keyword": "dashboard",
+        "explanation": "The dashboard is your home screen, where you can see all your activity at a glance."
+    },
+    {
+        "keyword": "error",
+        "explanation": "This page is shown when users encounter an error or a page cannot be found."
+    },
+    {
+        "keyword": "files",
+        "explanation": "Users can manage their files here, including uploading documents or viewing files related to their projects."
+    },
+    {
+        "keyword": "forgot",
+        "explanation": "Similar to the reset section, this allows users to initiate a process to recover their forgotten password."
+    },
+    {
+        "keyword": "help",
+        "explanation": "This section offers guidance and FAQs to help users navigate the site and troubleshoot common issues."
+    },
+    {
+        "keyword": "home",
+        "explanation": "This is the main landing page of the website, providing an overview of what the site offers."
+    },
+    {
+        "keyword": "login",
+        "explanation": "This section allows you to log into the system to save/load/modify your projects."
+    },
+    {
+        "keyword": "overview",
+        "explanation": "This provides a summary view of the user's profile, including key information and statistics."
+    },
+    {
+        "keyword": "password",
+        "explanation": "This section is dedicated to password recovery and management options for users."
+    },
+    {
+        "keyword": "profile",
+        "explanation": "This section allows users to view and edit their personal profile information."
+    },
+    {
+        "keyword": "projects",
+        "explanation": "This section allows users to manage their projects, including creating, editing, and viewing project details."
+    },
+    {
+        "keyword": "registration",
+        "explanation": "This section allows you to register as a new user in the system."
+    },
+    {
+        "keyword": "reset",
+        "explanation": "This section provides users with the means to reset their password if they have forgotten it."
+    },
+    {
+        "keyword": "settings",
+        "explanation": "This section allows you to configure your preferences and account settings."
+    }
+]

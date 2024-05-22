@@ -1,0 +1,133 @@
+#file: noinspection YAMLSchemaValidation
+version: "3.1"
+
+rules:
+
+# Rule to greet the user when they say "greet"
+- rule: Say greeting anytime the user says greeting
+  steps:
+    - intent: greet
+    - action: utter_greet
+
+# Rule to say goodbye when the user says "goodbye"
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+# Rule to identify as a bot when challenged
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+# Rule to ask the user to rephrase when the NLU confidence is low
+- rule: Ask the user to rephrase whenever they send a message with low NLU confidence
+  steps:
+  - intent: nlu_fallback
+  - action: action_fallback_to_llm
+  - active_loop: action_fallback_to_llm
+
+# Rule to respond to out of scope intents
+- rule: answer out of scope
+  steps:
+  - intent: out_of_scope
+  - action: utter_out_of_scope
+
+# Rule to respond to help intents
+- rule: help
+  steps:
+    - intent: help
+    - action: utter_help
+
+# Rule to respond to thank you intents
+- rule: thankyou
+  steps:
+  - intent: thankyou
+  - action: utter_noworries
+
+# Rule for the first time a Mongolian greeting is used
+- rule: Mongolian greeting first time
+  steps:
+  - intent: mongolian_greeting
+  - action: action_check_mongolian_greeting
+  - slot_was_set:
+    - mongolian_greeting_used: true
+
+# Rule for subsequent Mongolian greetings
+- rule: Mongolian greeting subsequent times
+  condition:
+  - slot_was_set:
+    - mongolian_greeting_used: true
+  steps:
+  - intent: mongolian_greeting
+  - action: action_check_mongolian_greeting
+
+# Rule to activate the feature request form when no other form is active
+- rule: Activate feature_request_form when no other form is active
+  condition:
+  # this condition allows stories to handle form switching
+  - active_loop: null
+  steps:
+  - intent: provide_feature_request
+  - action: feature_request_form
+  - active_loop: feature_request_form
+
+# Rule to activate the bug report form when no other form is active
+- rule: Activate bug_report_form when no other form is active
+  condition:
+  # this condition allows stories to handle form switching
+  - active_loop: null
+  steps:
+  - intent: provide_bug_report
+  - action: bug_report_form
+  - active_loop: bug_report_form
+
+# Rule to activate the generic comment form when no other form is active
+- rule: Activate generic_comment_form when no other form is active
+  condition:
+  # this condition allows stories to handle form switching
+  - active_loop: null
+  steps:
+  - intent: provide_generic_comment
+  - action: generic_comment_form
+  - active_loop: generic_comment_form
+
+# Rule to submit the feature request form when not switched from a previous form
+- rule: Submit feature_request_form while not switched from previous form
+  condition:
+  - active_loop: feature_request_form
+  - slot_was_set:
+    - previous_form_name: null
+  steps:
+  - action: feature_request_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_request_feature
+
+# Rule to submit the bug report form when not switched from a previous form
+- rule: Submit bug_report_form while not switched from previous form
+  condition:
+  - active_loop: bug_report_form
+  - slot_was_set:
+    - previous_form_name: null
+  steps:
+  - action: bug_report_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_bug_report
+
+# Rule to submit the generic comment form when not switched from a previous form
+- rule: Submit generic_comment_form while not switched from previous form
+  condition:
+  - active_loop: generic_comment_form
+  - slot_was_set:
+    - previous_form_name: null
+  steps:
+  - action: generic_comment_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_generic_comment

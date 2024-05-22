@@ -1,0 +1,30 @@
+version: "3.1"
+stories:
+- story: greet/bye path
+  steps:
+  - intent: greet
+    user: |-
+      hi
+  - action: utter_greet
+  - intent: goodbye
+    user: |-
+      bye
+  - action: utter_goodbye
+- story: say goodbye
+  steps:
+  - intent: goodbye
+    user: |-
+      bye
+  - action: utter_goodbye
+- story: help
+  steps:
+  - intent: help
+    user: |-
+      can you help me
+  - action: utter_help
+- story: out of scope
+  steps:
+  - intent: out_of_scope
+    user: |-
+      I want to order a pizza
+  - action: utter_out_of_scope

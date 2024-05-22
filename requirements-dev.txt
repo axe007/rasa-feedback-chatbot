@@ -1,0 +1,16 @@
+-r requirements.txt
+# action to create report PR
+pytablewriter
+
+# python lint/format/types
+black
+flake8
+pytype
+pre-commit
+
+# python test
+pytest-cov
+coveralls
+pytest
+pytest-sanic
+pytest-asyncio

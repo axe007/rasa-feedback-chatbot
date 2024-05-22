@@ -1,0 +1,140 @@
+version: "3.1"
+
+stories:
+
+# Story to handle a feature request, switch to another form, and deny the switch
+- story: feature request + switch to bug report or provide comment, deny
+  steps:
+  - intent: provide_feature_request
+  - action: feature_request_form
+  - active_loop: feature_request_form
+  - or:
+    - intent: provide_bug_report
+    - intent: provide_generic_comment
+  - action: action_switch_forms_ask
+  - slot_was_set:
+    - next_form_name: another form
+  - intent: deny
+  - action: action_switch_forms_deny
+  - slot_was_set:
+    - next_form_name: null
+  - action: feature_request_form
+  - active_loop: feature_request_form
+
+# Story to handle a feature request, switch to bug report, affirm the switch, and deny switching back
+- story: request new feature + switch to bug report, affirm + switch back, deny
+  steps:
+  - intent: provide_feature_request
+  - action: feature_request_form
+  - active_loop: feature_request_form
+  - or:
+    - intent: provide_bug_report
+    - intent: find_page
+  - action: action_switch_forms_ask
+  - slot_was_set:
+    - next_form_name: bug_report_form
+  - intent: affirm
+  - action: action_switch_forms_affirm
+  - slot_was_set:
+    - next_form_name: null
+  - slot_was_set:
+    - previous_form_name: feature_request_form
+  - action: bug_report_form
+  - active_loop: bug_report_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_bug_report
+  - action: action_switch_back_ask
+  - slot_was_set:
+    - previous_form_name: null
+  - intent: deny
+  - action: utter_ask_whatelse
+
+# Story to handle a feature request, switch to generic comment, affirm the switch, and deny switching back
+- story: feature request + switch to generic comment, affirm + switch back, deny
+  steps:
+  - intent: provide_feature_request
+  - action: feature_request_form
+  - active_loop: feature_request_form
+  - intent: provide_generic_comment
+  - action: action_switch_forms_ask
+  - slot_was_set:
+    - next_form_name: generic_comment_form
+  - intent: affirm
+  - action: action_switch_forms_affirm
+  - slot_was_set:
+    - next_form_name: null
+  - slot_was_set:
+    - previous_form_name: feature_request_form
+  - action: generic_comment_form
+  - active_loop: generic_comment_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_generic_comment
+  - action: action_switch_back_ask
+  - slot_was_set:
+    - previous_form_name: null
+  - intent: deny
+  - action: utter_ask_whatelse
+
+# Story to handle a feature request, switch to bug report, affirm the switch, and affirm switching back
+- story: feature request + switch to bug report, affirm + switch back, affirm
+  steps:
+  - intent: provide_feature_request
+  - action: feature_request_form
+  - active_loop: feature_request_form
+  - or:
+    - intent: provide_bug_report
+    - intent: find_page
+  - action: action_switch_forms_ask
+  - slot_was_set:
+    - next_form_name: bug_report_form
+  - intent: affirm
+  - action: action_switch_forms_affirm
+  - slot_was_set:
+    - next_form_name: null
+  - slot_was_set:
+    - previous_form_name: feature_request_form
+  - action: bug_report_form
+  - active_loop: bug_report_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_bug_report
+  - action: action_switch_back_ask
+  - slot_was_set:
+    - previous_form_name: null
+  - intent: affirm
+  - action: feature_request_form
+  - active_loop: feature_request_form
+
+# Story to handle a feature request, switch to generic comment, affirm the switch, and affirm switching back
+- story: feature request + switch to generic comment, affirm + switch back, affirm
+  steps:
+  - intent: provide_feature_request
+  - action: feature_request_form
+  - active_loop: feature_request_form
+  - intent: provide_generic_comment
+  - action: action_switch_forms_ask
+  - slot_was_set:
+    - next_form_name: generic_comment_form
+  - intent: affirm
+  - action: action_switch_forms_affirm
+  - slot_was_set:
+    - next_form_name: null
+  - slot_was_set:
+    - previous_form_name: feature_request_form
+  - action: generic_comment_form
+  - active_loop: generic_comment_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_generic_comment
+  - action: action_switch_back_ask
+  - slot_was_set:
+    - previous_form_name: null
+  - intent: affirm
+  - action: feature_request_form
+  - active_loop: feature_request_form
