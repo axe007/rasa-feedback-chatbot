@@ -20,10 +20,10 @@ action_endpoint:
 tracker_store:
     type: SQL
     dialect: "postgresql"  # the dialect used to interact with the db
-    url: "postgresql+psycopg2://enomads_rasa:ZOKUfA47PSSa@51.79.222.223:5432/enomads_rasa"  # (optional) host of the sql db, e.g. "localhost"
-    db: "enomads_rasa"  # path to your db
-    username: "enomads_rasa" # username used for authentication
-    password: "ZOKUfA47PSSa" # password used for authentication
+    url: ${DB_URL}  # (optional) host of the sql db, e.g. "localhost"
+    db: ${DB_NAME}  # path to your db
+    username: ${DB_USERNAME}  # username used for authentication
+    password: ${DB_PASSWORD}  # password used for authentication
     query: # optional dictionary to be added as a query string to the connection URL
       # driver: my-driver
 
